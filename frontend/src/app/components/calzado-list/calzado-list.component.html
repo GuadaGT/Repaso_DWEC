@@ -1,32 +1,34 @@
-<div class="container-fluid">
-  <h3 class="mt-2 d-flex">
-    {{ calzados.length }} Calzados
-  </h3>
-
-  <div *ngFor="let calzado of calzados">
-    <div class="row border rounded">
-      <div class="col-md-11">
-        <div class="row mt-3 pt-2">
-          <div class="col-md-2">
-            <img src="{{ calzado.imagen || 'assets/images/Not_found.JPG' }}" alt="{{ calzado.nombre }}">
+<div class="container">
+  <div class="row">
+    <div class=" col-sm-6 col-md-4 col-lg-3 col-xl-2 mt-3" *ngFor="let calzado of listaCalzado">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <h2>{{calzado.nombre}}</h2>
           </div>
-          <div class="col-md-9">
-            <h5>{{ calzado.nombre }}</h5>
-            <small class="text-primary">{{ calzado.tipo }}</small>
-            <p><b>Precio (€)</b>: {{ calzado.precio }}</p>
-            <p><b>Talla</b>: {{ calzado.talla }}</p>
-            <div class="pb-2"></div>
+          <div class="card-subtitle">
+            {{calzado.tipo}}
+          </div>
+          <img [src]="calzado.imagen" [alt]="calzado.nombre" class="card-img-top">
+          <div class="card-body">
+            <p class="card-text"><strong>Color: </strong>{{calzado.color}}</p>
+            <p class="card-text"><strong>Talla: </strong>{{calzado.talla}}</p>
+          </div>
+          <div class="card-footer d-flex justify-content-between">
+            <p class="bg-success badge">{{calzado.precio | currency:'EUR'}}</p>
+            <div class="buttons d-flex">
+              <button class="btn" [routerLink]="'calzado/detail/' + calzado._id">
+                <fa-icon [icon]="faEdit" class="text-primary"></fa-icon>
+              </button>
+              <button class="btn">
+                <fa-icon [icon]="faTrashCan"
+                         (click)="borrarCalzado(calzado)"
+                         class="text-danger"></fa-icon>
+              </button>
+            </div>
           </div>
         </div>
       </div>
-
-      <div class="col-md-1 remove d-flex">
-        <h4 class="ms-auto align-self-center">
-          <button class="btn btn-primary" (click)="verDetalle(calzado)">Ver Detalle</button>
-          <button class="btn btn-success" (click)="addToPedido(calzado)">Añadir al Pedido</button>
-        </h4>
-      </div>
     </div>
-    <div class="mb-2"></div>
   </div>
 </div>

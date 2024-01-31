@@ -3,47 +3,51 @@ import { Calzado } from "../../common/calzado";
 import { CalzadoService } from "../../services/calzado.service";
 import { Router } from "@angular/router";
 import { BehaviorSubject } from 'rxjs';
+import {faEdit, faTrashCan} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-calzado-list',
   templateUrl: './calzado-list.component.html',
   styleUrls: ['./calzado-list.component.css']
 })
-export class CalzadoListComponent implements OnInit {
-
-  calzados: Calzado[] = [];
-  private pedidoSubject = new BehaviorSubject<Calzado[]>([]);
-  pedido$ = this.pedidoSubject.asObservable();
-
-  constructor(private calzadoService: CalzadoService, private router: Router) {}
-
-  ngOnInit(): void {
-    this.loadCalzadosList();
+export class CalzadoListComponent
+{
+  listaCalzado: Calzado[] = [];
+  constructor(private calzadoService: CalzadoService)
+  {
+    this.loadCalzado();
   }
 
-  private loadCalzadosList() {
-    this.calzadoService.getCalzadoList().subscribe(
+  private loadCalzado()
+  {
+    this.calzadoService.getAll().subscribe(
       {
         next: value => {
-          this.calzados = value;
+          this.listaCalzado = value;
         },
-        error: err => {
+        error:(err)=>{
           console.error(err);
         },
-        complete: () => {
+        complete:()=>{
           console.log('Complete');
         }
       }
-    );
+    )
   }
 
-  verDetalle(calzado: Calzado) {
-    this.router.navigate(['/calzados', calzado._id]);
-  }
+  protected readonly faEdit = faEdit;
+  protected readonly faTrashCan = faTrashCan;
 
-  addToPedido(calzado: Calzado) {
-    const pedidoActual = this.pedidoSubject.value;
-    pedidoActual.push(calzado);
-    this.pedidoSubject.next(pedidoActual);
+  borrarCalzado(calzado: Calzado)
+  {
+    if(confirm('¿Desea borrar el calzado ' + calzado.nombre + '?')){
+      this.calzadoService.borrarCalzado(calzado._id).subscribe(
+        {
+          next: value => {
+            alert(value.status);
+          }
+        }
+      )
+    }
   }
 }

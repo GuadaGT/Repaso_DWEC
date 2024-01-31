@@ -9,18 +9,18 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
+    redirectTo: 'calzado/list'
+  },
+  {
+    path: 'calzado/list',
     component: CalzadoListComponent
   },
   {
-    path: 'listado',
-    component: CalzadoListComponent
-  },
-  {
-    path: 'productos',
+    path: 'calzado/detail/:id',
     component: DetalleCalzadoComponent
   },
   {
-    path: 'nuevo',
+    path: 'calzado/new',
     component: CalzadoNuevoComponent
   },
   {
