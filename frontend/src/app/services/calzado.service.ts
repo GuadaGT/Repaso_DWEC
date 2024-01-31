@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {Calzado} from "../common/calzado";
 
 @Injectable({
@@ -9,7 +9,10 @@ import {Calzado} from "../common/calzado";
 export class CalzadoService
 {
   private baseURL = 'http://localhost:3000/api/v1/calzados';
+  //Observable para carrito
+  carrito: BehaviorSubject<Calzado[]> = new BehaviorSubject<Calzado[]>([]);
 
+  precioCarrito:BehaviorSubject<number> = new BehaviorSubject<number>(0);
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Calzado[]> {
@@ -36,6 +39,14 @@ export class CalzadoService
   borrarCalzado(id: string): Observable<ApiResultDelete>
   {
     return this.http.delete<ApiResultDelete>(this.baseURL + '/borrar/' + id);
+  }
+
+  addCalzadoToCarrito(calzado: Calzado)
+  {
+    const miCarrito = this.carrito.value;
+    miCarrito.push(calzado);
+    this.carrito.next(miCarrito);
+    this.precioCarrito.next(this.precioCarrito.value+calzado.precio);
   }
 
 }

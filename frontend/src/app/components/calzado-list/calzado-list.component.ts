@@ -3,7 +3,7 @@ import { Calzado } from "../../common/calzado";
 import { CalzadoService } from "../../services/calzado.service";
 import { Router } from "@angular/router";
 import { BehaviorSubject } from 'rxjs';
-import {faEdit, faTrashCan} from "@fortawesome/free-solid-svg-icons";
+import {faEdit, faShoppingCart, faTrashCan} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-calzado-list',
@@ -45,9 +45,17 @@ export class CalzadoListComponent
         {
           next: value => {
             alert(value.status);
+            this.loadCalzado();
           }
         }
       )
     }
+  }
+
+  protected readonly faShoppingCart = faShoppingCart;
+
+  addToPedido(calzado: Calzado)
+  {
+    this.calzadoService.addCalzadoToCarrito(calzado);
   }
 }

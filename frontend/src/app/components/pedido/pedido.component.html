@@ -1,1 +1,26 @@
-<p>pedido works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12 border-1 p-2 mt-2" *ngFor="let item of pedido">
+      <div class="row">
+        <div class="col-3">
+          <img [src]="item.imagen" alt="" class="img-fluid">
+        </div>
+        <div class="col-7">
+          <h3>{{item.nombre}}</h3>
+          <p> Talla: {{item.talla}} | Color: {{item.color}}</p>
+        </div>
+        <div class="col-2">
+          <p class="text-secondary-emphasis">{{item.precio | currency:'EUR'}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-2 offset-10">
+      <h3>Total</h3>
+    </div>
+    <div class="col-2 offset-10">
+      {{precioTotal | currency:'EUR'}}
+    </div>
+  </div>
+</div>

@@ -21,6 +21,11 @@
                 <fa-icon [icon]="faEdit" class="text-primary"></fa-icon>
               </button>
               <button class="btn">
+                <fa-icon [icon]="faShoppingCart"
+                         (click)="addToPedido(calzado)"
+                         class="text-success"></fa-icon>
+              </button>
+              <button class="btn">
                 <fa-icon [icon]="faTrashCan"
                          (click)="borrarCalzado(calzado)"
                          class="text-danger"></fa-icon>
