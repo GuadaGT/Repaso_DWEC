@@ -8,6 +8,8 @@ import { CalzadoNuevoComponent } from './components/calzado-nuevo/calzado-nuevo.
 import { PedidoComponent } from './components/pedido/pedido.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import {HttpClientModule} from "@angular/common/http";
+import {FaIconComponent} from "@fortawesome/angular-fontawesome";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import {HttpClientModule} from "@angular/common/http";
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FaIconComponent,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

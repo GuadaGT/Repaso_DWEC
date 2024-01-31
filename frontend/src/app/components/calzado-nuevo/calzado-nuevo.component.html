@@ -1,1 +1,84 @@
-<p>calzado-nuevo works!</p>
+<div class="container-fluid">
+  <!-- Encabezado del formulario -->
+  <div class="w-100 d-flex">
+    <h3 class="mt-2 d-inline-block me-auto">{{calzados.length}} Calzados</h3>
+    <h3 class="d-inline-block ms-auto pointer" (click)="newCalzado()" data-bs-toggle="modal"
+        data-bs-target="#miModal">Agregar Calzado
+      <fa-icon [icon]="faCirclePlus"></fa-icon>
+    </h3>
+  </div>
+
+  <!-- Modal para agregar calzado -->
+  <div class="modal fade" id="miModal" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="miModalLabel">{{editar ? 'Editar Calzado' : 'Nuevo Calzado'}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <!-- Formulario de calzado -->
+        <form [formGroup]="formCalzado" (ngSubmit)="agregarCalzado()">
+          <div class="modal-body">
+            <!-- Nombre -->
+            <div class="form-floating mb-3">
+              <input formControlName="nombre" type="text" class="form-control" id="nombre" placeholder="Nombre">
+              <label for="nombre">Nombre</label>
+              <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert alert-warning" role="alert">
+                <div *ngIf="nombre.errors?.['required'] || nombre.errors?.['notOnlyWhiteSpace']">
+                  El nombre es obligatorio.
+                </div>
+                <div *ngIf="nombre.errors?.['minlength']">
+                  Mínimo 5 caracteres.
+                </div>
+              </div>
+            </div>
+
+            <!-- Imagen -->
+            <div class="form-floating mb-3">
+              <input formControlName="imagen" type="text" class="form-control" id="imagen" placeholder="Imagen">
+              <label for="imagen">Imagen</label>
+              <!-- Validaciones de imagen aquí -->
+            </div>
+
+            <!-- Precio -->
+            <div class="form-floating mb-3">
+              <input formControlName="precio" type="number" class="form-control" id="precio" placeholder="Precio">
+              <label for="precio">Precio</label>
+              <!-- Validaciones de precio aquí -->
+            </div>
+
+            <!-- Tipo -->
+            <div class="form-floating mb-3">
+              <input formControlName="tipo" type="text" class="form-control" id="tipo" placeholder="Tipo">
+              <label for="tipo">Tipo</label>
+              <!-- Validaciones de tipo aquí -->
+            </div>
+
+            <!-- Talla -->
+            <div class="form-floating mb-3">
+              <input formControlName="talla" type="number" class="form-control" id="talla" placeholder="Talla">
+              <label for="talla">Talla</label>
+              <!-- Validaciones de talla aquí -->
+            </div>
+
+            <!-- Color -->
+            <div class="form-floating mb-3">
+              <input formControlName="color" type="text" class="form-control" id="color" placeholder="Color">
+              <label for="color">Color</label>
+              <!-- Validaciones de color aquí -->
+            </div>
+          </div>
+
+          <!-- Botones del formulario -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary" [disabled]="formCalzado.invalid" data-bs-dismiss="modal">
+              Guardar Cambios
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

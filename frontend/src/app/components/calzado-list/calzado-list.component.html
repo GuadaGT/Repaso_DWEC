@@ -1,1 +1,32 @@
-<p>calzado works!</p>
+<div class="container-fluid">
+  <h3 class="mt-2 d-flex">
+    {{ calzados.length }} Calzados
+  </h3>
+
+  <div *ngFor="let calzado of calzados">
+    <div class="row border rounded">
+      <div class="col-md-11">
+        <div class="row mt-3 pt-2">
+          <div class="col-md-2">
+            <img src="{{ calzado.imagen || 'assets/images/Not_found.JPG' }}" alt="{{ calzado.nombre }}">
+          </div>
+          <div class="col-md-9">
+            <h5>{{ calzado.nombre }}</h5>
+            <small class="text-primary">{{ calzado.tipo }}</small>
+            <p><b>Precio (€)</b>: {{ calzado.precio }}</p>
+            <p><b>Talla</b>: {{ calzado.talla }}</p>
+            <div class="pb-2"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-1 remove d-flex">
+        <h4 class="ms-auto align-self-center">
+          <button class="btn btn-primary" (click)="verDetalle(calzado)">Ver Detalle</button>
+          <button class="btn btn-success" (click)="addToPedido(calzado)">Añadir al Pedido</button>
+        </h4>
+      </div>
+    </div>
+    <div class="mb-2"></div>
+  </div>
+</div>
