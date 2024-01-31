@@ -1,4 +1,3 @@
-// Importar el modelo de libro definido en '../models/book.model'
 const Calzado = require('../models/calzado.model');
 const e = require("express");
 
@@ -17,7 +16,7 @@ CalzadoCtrl.getCalzado = async (req, res) => {
     const calzado = await Calzado.findById(req.params.id)
         .then((data) => {
             if (data != null) res.json(data);
-            else res.json({ status: 'Calzado doesn\'t exist' });
+            else res.json({ status: 'Calzado doesnt exist' });
         })
         .catch(err => console.error(err));
 };
@@ -40,7 +39,7 @@ CalzadoCtrl.updateCalzado = async (req, res) => {
     )
         .then((data) => {
             if (data != null) res.json({ status: 'Calzado successfully updated', data });
-            else res.json({ status: 'Calzado doesn\'t exist' });
+            else res.json({ status: 'Calzado doesnt exist' });
         })
         .catch(err => res.send(err.message));
 };
@@ -50,7 +49,7 @@ CalzadoCtrl.deleteCalzado = async (req, res) => {
     await Calzado.findByIdAndDelete(req.params.id)
         .then((data) => {
             if (data != null) res.json({ status: 'Calzado successfully deleted' });
-            else res.json({ status: 'Calzado doesn\'t exist' });
+            else res.json({ status: 'Calzado doesnt exist' });
         })
         .catch(err => res.send(err.message));
 };
