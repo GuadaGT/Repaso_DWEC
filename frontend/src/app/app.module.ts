@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CalzadoListComponent } from './components/calzado-list/calzado-list.component';
 import { DetalleCalzadoComponent } from './components/detalle-calzado/detalle-calzado.component';
 import { CalzadoNuevoComponent } from './components/calzado-nuevo/calzado-nuevo.component';
 import { PedidoComponent } from './components/pedido/pedido.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -14,11 +15,13 @@ import { PedidoComponent } from './components/pedido/pedido.component';
     CalzadoListComponent,
     DetalleCalzadoComponent,
     CalzadoNuevoComponent,
-    PedidoComponent
+    PedidoComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
