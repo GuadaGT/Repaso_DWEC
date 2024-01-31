@@ -21,7 +21,7 @@ export class CalzadoNuevoComponent implements OnInit
       nombre: ['', [Validators.minLength(5),
         Validators.required,
         FormValidators.notOnlyWhiteSpace]],
-      imagen: ['', [Validators.required, this.imagenFormatoValido]],
+      imagen: ['', [Validators.required]],
       precio: [0, [Validators.required, Validators.min(0)]],
       tipo: ['', [Validators.required, Validators.minLength(3), FormValidators.notOnlyWhiteSpace]],
       talla: [0, [Validators.required, Validators.min(36), Validators.max(50)]],
@@ -59,15 +59,6 @@ export class CalzadoNuevoComponent implements OnInit
 
   ngOnInit(): void {}
 
-  imagenFormatoValido(control: any) {
-    const formatosValidos = ['png', 'jpeg', 'jpg'];
-    const formato = control.value.substring(control.value.lastIndexOf('.') + 1).toLowerCase();
-
-    if (formatosValidos.indexOf(formato) === -1) {
-      return { imagenFormatoInvalido: true };
-    }
-    return null;
-  }
 
   agregarCalzado() {
     if (this.formCalzado.valid) {

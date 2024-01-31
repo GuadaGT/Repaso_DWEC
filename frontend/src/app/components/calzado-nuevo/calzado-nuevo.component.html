@@ -26,7 +26,7 @@
               <label for="nombre">Nombre</label>
               <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert alert-warning" role="alert">
                 <div *ngIf="nombre.errors?.['required'] || nombre.errors?.['notOnlyWhiteSpace']">
-                  El nombre es obligatorio.
+                  El nombre es obligatorio y debe tener mínimo 5 caracteres.
                 </div>
                 <div *ngIf="nombre.errors?.['minlength']">
                   Mínimo 5 caracteres.
@@ -38,35 +38,70 @@
             <div class="form-floating mb-3">
               <input formControlName="imagen" type="text" class="form-control" id="imagen" placeholder="Imagen">
               <label for="imagen">Imagen</label>
-              <!-- Validaciones de imagen aquí -->
+              <div *ngIf="imagen.invalid && (imagen.dirty || imagen.touched)" class="alert alert-warning" role="alert">
+                <div *ngIf="imagen.errors?.['required']">
+                  La imagen es obligatoria.
+                </div>
+                <div *ngIf="imagen.errors?.['imagenFormatoInvalido']">
+                  Formato de imagen no válido. Debe ser .png, .jpeg o .jpg.
+                </div>
+              </div>
             </div>
 
             <!-- Precio -->
             <div class="form-floating mb-3">
               <input formControlName="precio" type="number" class="form-control" id="precio" placeholder="Precio">
               <label for="precio">Precio</label>
-              <!-- Validaciones de precio aquí -->
+              <div *ngIf="precio.invalid && (precio.dirty || precio.touched)" class="alert alert-warning" role="alert">
+                <div *ngIf="precio.errors?.['required']">
+                  El precio es obligatorio.
+                </div>
+                <div *ngIf="precio.errors?.['min']">
+                  El precio debe ser positivo.
+                </div>
+              </div>
             </div>
 
             <!-- Tipo -->
             <div class="form-floating mb-3">
               <input formControlName="tipo" type="text" class="form-control" id="tipo" placeholder="Tipo">
               <label for="tipo">Tipo</label>
-              <!-- Validaciones de tipo aquí -->
+              <div *ngIf="tipo.invalid && (tipo.dirty || tipo.touched)" class="alert alert-warning" role="alert">
+                <div *ngIf="tipo.errors?.['required'] || tipo.errors?.['notOnlyWhiteSpace']">
+                  El tipo es obligatorio y debe tener más de 3 caracteres.
+                </div>
+                <div *ngIf="tipo.errors?.['minlength']">
+                  Mínimo 3 caracteres.
+                </div>
+              </div>
             </div>
 
             <!-- Talla -->
             <div class="form-floating mb-3">
               <input formControlName="talla" type="number" class="form-control" id="talla" placeholder="Talla">
               <label for="talla">Talla</label>
-              <!-- Validaciones de talla aquí -->
+              <div *ngIf="talla.invalid && (talla.dirty || talla.touched)" class="alert alert-warning" role="alert">
+                <div *ngIf="talla.errors?.['required']">
+                  La talla es obligatoria.
+                </div>
+                <div *ngIf="talla.errors?.['min'] || talla.errors?.['max']">
+                  La talla debe estar entre 36 y 50.
+                </div>
+              </div>
             </div>
 
             <!-- Color -->
             <div class="form-floating mb-3">
               <input formControlName="color" type="text" class="form-control" id="color" placeholder="Color">
               <label for="color">Color</label>
-              <!-- Validaciones de color aquí -->
+              <div *ngIf="color.invalid && (color.dirty || color.touched)" class="alert alert-warning" role="alert">
+                <div *ngIf="color.errors?.['required'] || color.errors?.['notOnlyWhiteSpace']">
+                  El color es obligatorio y debe tener mínimo 2 caracteres.
+                </div>
+                <div *ngIf="color.errors?.['minlength']">
+                  Mínimo 2 caracteres.
+                </div>
+              </div>
             </div>
           </div>
 
