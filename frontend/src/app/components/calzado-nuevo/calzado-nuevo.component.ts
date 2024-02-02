@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Calzado } from "../../common/calzado";
+
 import { CalzadoService } from "../../services/calzado.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { FormValidators } from "../../validators/validaciones";
@@ -12,19 +12,25 @@ import {faCirclePlus} from "@fortawesome/free-solid-svg-icons";
 })
 export class CalzadoNuevoComponent implements OnInit
 {
-  editar = false;
-  calzados: Calzado[] = [];
-  formCalzado: FormGroup = this.formBuilder.group(
+  formCalzado: FormGroup =  this.formBuilder.group(
     {
-      _id: [''],
-      nombre: ['', [Validators.minLength(5),
-        Validators.required,
+      id: [''],
+      nombre: ['',[Validators.required,
+        Validators.minLength(5),
         FormValidators.notOnlyWhiteSpace]],
-      imagen: ['', [Validators.required]],
-      precio: [0, [Validators.required, Validators.min(0)]],
-      tipo: ['', [Validators.required, Validators.minLength(3), FormValidators.notOnlyWhiteSpace]],
-      talla: [0, [Validators.required, Validators.min(36), Validators.max(50)]],
-      color: ['', [Validators.required, Validators.minLength(2), FormValidators.notOnlyWhiteSpace]]
+      imagen: ['',[Validators.required,
+        FormValidators.notImageFile]],
+      precio: [0,[Validators.required],
+        Validators.min(0)],
+      tipo: ['',[Validators.required,
+        Validators.minLength(3),
+        FormValidators.notOnlyWhiteSpace]],
+      talla: [0,[Validators.required,
+        Validators.min(36),
+        Validators.max(50)]],
+      color: ['',[Validators.required,
+        Validators.minLength(2),
+        FormValidators.notOnlyWhiteSpace]],
     }
   );
 

@@ -5,27 +5,90 @@
         <div class="form-floating mb-3">
           <input type="texto" class="form-control" formControlName="nombre" id="nombre" placeholder="Nombre">
           <label for="nombre">Nombre</label>
+          <div *ngIf="nombre?.invalid && (nombre.touched || nombre.dirty)" class="alert alert-warning">
+            <div *ngIf="nombre.errors?.['notOnlyWhiteSpace']">
+            <span class="small">El nombre no puede contener sólo espacios en blanco.</span>
+            </div>
+            <div *ngIf="nombre.errors?.['required']">
+              <span class="small">El nombre es obligatorio.</span>
+            </div>
+            <div *ngIf="nombre.errors?.['minlength']">
+              <span class="small">El nombre debe tener al menos 5 caracteres.</span>
+            </div>
+          </div>
         </div>
         <!--Validación formulario-->
         <div class="form-floating mb-3">
           <input type="texto" class="form-control" formControlName="imagen" id="imagen" placeholder="Imagen">
           <label for="imagen">Imagen</label>
+          <div *ngIf="imagen?.invalid && (imagen?.touched || imagen?.dirty)" class="alert alert-warning">
+            <div *ngIf="imagen.errors?.['notOnlyWhiteSpace']">
+              <span class="small">El nombre no puede contener sólo espacios en blanco.</span>
+            </div>
+            <div *ngIf="imagen.errors?.['required']">
+              <span class="small">El nombre es obligatorio.</span>
+            </div>
+            <div *ngIf="imagen.errors?.['minlength']">
+              <span class="small">El nombre debe tener al menos 5 caracteres.</span>
+            </div>
+          </div>
         </div>
         <div class="form-floating mb-3">
           <input type="number" class="form-control" formControlName="precio" id="precio" placeholder="Precio">
           <label for="precio">Precio</label>
+          <div *ngIf="precio?.invalid && (imagen.touched || imagen.dirty)" class="alert alert-warning">
+            <div *ngIf="imagen.errors?.['notImageFile']">
+              <span class="small">El formato de imagen es jpg, png o jpeg</span>
+            </div>
+            <div *ngIf="imagen.errors?.['required']">
+              <span class="small">La imagen es obligatoria.</span>
+            </div>
+          </div>
         </div>
         <div class="form-floating mb-3">
           <input type="texto" class="form-control" formControlName="tipo" id="tipo" placeholder="Tipo">
           <label for="tipo">Tipo</label>
+          <div *ngIf="tipo?.invalid && (tipo.touched || tipo.dirty)" class="alert alert-warning">
+            <div *ngIf="tipo.errors?.['notOnlyWhiteSpace']">
+              <span class="small">El nombre no puede contener sólo espacios en blanco.</span>
+            </div>
+            <div *ngIf="tipo?.errors?.['required']">
+              <span class="small">El nombre es obligatorio.</span>
+            </div>
+            <div *ngIf="tipo?.errors?.['minlength']">
+              <span class="small">El nombre debe tener al menos 5 caracteres.</span>
+            </div>
+          </div>
         </div>
         <div class="form-floating mb-3">
           <input type="texto" class="form-control" formControlName="talla" id="talla" placeholder="Talla">
           <label for="talla">Talla</label>
+          <div *ngIf="talla?.invalid && (talla.touched || talla.dirty)" class="alert alert-warning">
+            <div *ngIf="talla.errors?.['notOnlyWhiteSpace']">
+              <span class="small">El nombre no puede contener sólo espacios en blanco.</span>
+            </div>
+            <div *ngIf="talla.errors?.['required']">
+              <span class="small">El nombre es obligatorio.</span>
+            </div>
+            <div *ngIf="talla.errors?.['minlength']">
+              <span class="small">El nombre debe tener al menos 5 caracteres.</span>
+            </div>
+          </div>
         </div>
         <div class="form-floating mb-3">
           <input type="number" class="form-control" formControlName="color" id="color" placeholder="Color">
           <label for="color">Color</label>
+          <div *ngIf="color?.invalid && (color.touched || color.dirty)" class="alert alert-warning">
+            <div *ngIf="color.errors?.['notOnlyWhiteSpace']">
+              <span class="small">El nombre no puede contener sólo espacios en blanco.</span>
+            </div>
+            <div *ngIf="color.errors?.['required']">
+              <span class="small">El nombre es obligatorio.</span>
+            </div>
+            <div *ngIf="color.errors?.['minlength']">
+              <span class="small">El nombre debe tener al menos 5 caracteres.</span>
+            </div>
+          </div>
         </div>
       </ng-form>
       <div class="d-flex justify-content-center">

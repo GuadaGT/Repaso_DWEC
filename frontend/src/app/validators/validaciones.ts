@@ -14,5 +14,17 @@ export class FormValidators
     }
   }
 
-  static
+  static notImageFile(control: FormControl): ValidationErrors | null
+  {
+    const elementos: string[] = control.value.split('.');
+    const fin = elementos[elementos.length-1];
+    if((fin === 'jpg' || fin === 'png' || fin === 'jpeg'))
+    {
+      return null;
+    }
+    else
+    {
+      return {notImageFile: true};
+    }
+  }
 }
