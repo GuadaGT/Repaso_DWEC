@@ -1,1 +1,57 @@
-<h1 *ngIf="calzado"> {{calzado.nombre}}</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 offset-md-2">
+      <ng-form [formGroup]="formCalzado">
+        <div class="form-floating mb-3">
+          <input type="texto" class="form-control" formControlName="nombre" id="nombre" placeholder="Nombre">
+          <label for="nombre">Nombre</label>
+        </div>
+        <!--Validación formulario-->
+        <div class="form-floating mb-3">
+          <input type="texto" class="form-control" formControlName="imagen" id="imagen" placeholder="Imagen">
+          <label for="imagen">Imagen</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="number" class="form-control" formControlName="precio" id="precio" placeholder="Precio">
+          <label for="precio">Precio</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="texto" class="form-control" formControlName="tipo" id="tipo" placeholder="Tipo">
+          <label for="tipo">Tipo</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="texto" class="form-control" formControlName="talla" id="talla" placeholder="Talla">
+          <label for="talla">Talla</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="number" class="form-control" formControlName="color" id="color" placeholder="Color">
+          <label for="color">Color</label>
+        </div>
+      </ng-form>
+      <div class="d-flex justify-content-center">
+        <button class="btn btn-success" (click)="actualizar()">
+          Actualizar
+        </button>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card-header">
+        <div class="card-title">
+          <h2>{{nombre?.value}}</h2>
+        </div>
+        <div class="card-subtitle">
+          {{tipo?.value}}
+        </div>
+        <img [src]="imagen?.value || 'assets/images/not_found.jpg'" [alt]="nombre?.value" class="card-img-top">
+        <div class="card-body">
+          <p class="card-text"><strong>Color: </strong>{{color?.value}}</p>
+          <p class="card-text"><strong>Talla: </strong>{{talla?.value}}</p>
+        </div>
+        <div class="card-footer d-flex justify-content-center">
+          <p class="bg-success badge">{{precio?.value | currency:'EUR'}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+

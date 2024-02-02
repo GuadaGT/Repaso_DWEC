@@ -9,7 +9,7 @@ import { PedidoComponent } from './components/pedido/pedido.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import {HttpClientModule} from "@angular/common/http";
 import {FaIconComponent, FontAwesomeModule} from "@fortawesome/angular-fontawesome";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -20,14 +20,15 @@ import {ReactiveFormsModule} from "@angular/forms";
     PedidoComponent,
     NavbarComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FaIconComponent,
-    ReactiveFormsModule,
-    FontAwesomeModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FaIconComponent,
+        ReactiveFormsModule,
+        FontAwesomeModule,
+        FormsModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

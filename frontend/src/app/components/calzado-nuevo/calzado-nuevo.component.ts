@@ -17,7 +17,6 @@ export class CalzadoNuevoComponent implements OnInit
   formCalzado: FormGroup = this.formBuilder.group(
     {
       _id: [''],
-      __v: [0],
       nombre: ['', [Validators.minLength(5),
         Validators.required,
         FormValidators.notOnlyWhiteSpace]],
