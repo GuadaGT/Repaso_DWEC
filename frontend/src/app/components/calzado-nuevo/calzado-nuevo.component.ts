@@ -72,6 +72,10 @@ export class CalzadoNuevoComponent
       this.formCalzado.markAllAsTouched();
       return;
     }
+    const  miCalzado = this.formCalzado.getRawValue();
+    //"Borrar id de mongo" para insertar correctamente el objeto nuevo le eliminamos el id que "generamos"
+    //Sería lo mismo que comentar el delete miCalzado._id y poner el valor inicial de id a null
+    delete miCalzado._id;
     this.calzadoService.updateCalzado(this.formCalzado.getRawValue()).subscribe(
       {
         next:value => {
