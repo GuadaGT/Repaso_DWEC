@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-
 import { CalzadoService } from "../../services/calzado.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { FormValidators } from "../../validators/validaciones";
-import {faCirclePlus} from "@fortawesome/free-solid-svg-icons";
+
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-calzado-nuevo',
   templateUrl: './calzado-nuevo.component.html',
   styleUrls: ['./calzado-nuevo.component.css']
 })
-export class CalzadoNuevoComponent implements OnInit
+export class CalzadoNuevoComponent
 {
   formCalzado: FormGroup =  this.formBuilder.group(
     {
@@ -33,57 +33,57 @@ export class CalzadoNuevoComponent implements OnInit
         FormValidators.notOnlyWhiteSpace]],
     }
   );
-
   constructor(private calzadoService: CalzadoService,
-              private formBuilder: FormBuilder) {
+              private  formBuilder: FormBuilder,
+              //Redirigir con el elemento router, gestiona las rutas
+              private router : Router)
+  {
   }
 
-  get nombre(): any {
+  get nombre()
+  {
     return this.formCalzado.get('nombre');
   }
-
-  get imagen(): any {
+  get imagen()
+  {
     return this.formCalzado.get('imagen');
   }
-
-  get precio(): any {
+  get precio()
+  {
     return this.formCalzado.get('precio');
   }
-
-  get tipo(): any {
+  get tipo()
+  {
     return this.formCalzado.get('tipo');
   }
-
-  get talla(): any {
+  get talla()
+  {
     return this.formCalzado.get('talla');
   }
-
-  get color(): any {
+  get color()
+  {
     return this.formCalzado.get('color');
   }
 
-  ngOnInit(): void {}
 
-
-  agregarCalzado() {
-    if (this.formCalzado.valid) {
-      const nuevoCalzado = this.formCalzado.value;
-      this.calzadoService.addCalzado(nuevoCalzado).subscribe(
-        (respuesta) => {
-          console.log('Calzado agregado:', respuesta);
-
-        },
-        (error) => {
-          console.error('Error al agregar calzado:', error);
-        }
-      );
+  insterar() {
+    if(this.formCalzado.invalid)
+    {
+      this.formCalzado.markAllAsTouched();
+      return;
     }
+    this.calzadoService.updateCalzado(this.formCalzado.getRawValue()).subscribe(
+      {
+        next:value => {
+          alert(value.nombre + ': Actualizado.');
+          //Tiene que ir con la primera barra para no concatenar la ruta haciendola una ruta hijo. De esta forma hacemos una ruta raiz
+          this.router.navigateByUrl('/calzado/list');
+        },
+        error: (err)=>{
+          console.error(err);
+        }
+      }
+    )
   }
 
-  newCalzado()
-  {
-    this.formCalzado.reset();
-  }
-
-  protected readonly faCirclePlus = faCirclePlus;
 }
